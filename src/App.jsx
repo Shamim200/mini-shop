@@ -1,8 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
+import Header from "./components/Header";
+import Routers from "./Routers";
+
 const App = () => {
   return (
-    <div>
-      <h4>welcome to my shop☕</h4>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routers />
+    </BrowserRouter>
   );
 };
 export default App;
