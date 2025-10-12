@@ -5,7 +5,7 @@ const Signup = () => {
   return (
     <Container className="my-5">
       <Row className="justify-content-md-center">
-        <Col xs={6}>
+        <Col xs={12} md={9}>
           <Card>
             <Card.Body>
               <h4 className="text-capitalize text-center">sign up form</h4>
