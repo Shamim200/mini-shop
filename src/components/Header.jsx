@@ -1,6 +1,7 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Dropdown, Badge } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import DarkMode from "./DarkMode";
 
 const navList = [
   {
@@ -23,7 +24,12 @@ const navList = [
 
 const Header = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar
+      expand="sm"
+      bg="light"
+      data-bs-theme="light"
+      className="bg-body-tertiary"
+    >
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img src="./public/vite.svg" alt="" />
@@ -45,9 +51,20 @@ const Header = () => {
             <Nav.Link as={NavLink} to="/signup">
               Signup
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/cart">
+            <DarkMode />
+            {/* <Nav.Link as={NavLink} to="/cart">
               <FaShoppingCart size={20} />
-            </Nav.Link>
+            </Nav.Link> */}
+            <Dropdown align="end">
+              <Dropdown.Toggle variant="success">
+                <FaShoppingCart color="white" fontSize="15px" />
+                <Badge>0</Badge>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ minWidth: 370 }}>
+                <span style={{ padding: 10 }}>Cart is Empty!</span>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
