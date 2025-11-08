@@ -9,3 +9,49 @@ body {
 .active {
   color: red !important;
 }
+
+.dark-mode {
+  background: #1d1c19;
+  color: #fff;
+  transition: all linear 1.8s;
+  --cardBg: #282828 !important;
+  --card-color: #fffddd;
+  --search-bg: #000;
+  --search-color: #fff;
+  --sort-bg: #000;
+  --sort-color: #fff;
+  --navbar-bg: #000 !important;
+  --navbar-color: #ffff;
+}
+
+.light-mode {
+  background: #fff;
+  color: #000;
+  transition: all linear 1.8s;
+  --cardBg: #fff;
+  --card-color: #000;
+  --search-bg: #fff;
+  --search-color: #000;
+  --sort-bg: #fff;
+  --sort-color: #000;
+  --navbar-bg: #fff !important;
+  --navbar-color: #000;
+}
+/* products cards */
+.card {
+  background: var(--cardBg) !important;
+  color: var(--card-color) !important;
+}
+/* search components */
+.form-control {
+  background: var(--search-bg) !important;
+  color: var(--search-color) !important;
+}
+::placeholder {
+  color: var(--search-color) !important;
+}
+/* sort components */
+.form-select {
+  background: var(--sort-bg) !important;
+  color: var(--sort-color) !important;
+}

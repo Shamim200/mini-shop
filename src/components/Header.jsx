@@ -25,9 +25,10 @@ const navList = [
 const Header = () => {
   return (
     <Navbar
+      sticky="top"
       expand="sm"
-      bg="light"
-      data-bs-theme="light"
+      bg="dark"
+      data-bs-theme="dark"
       className="bg-body-tertiary"
     >
       <Container>
@@ -52,9 +53,6 @@ const Header = () => {
               Signup
             </Nav.Link>
             <DarkMode />
-            {/* <Nav.Link as={NavLink} to="/cart">
-              <FaShoppingCart size={20} />
-            </Nav.Link> */}
             <Dropdown align="end">
               <Dropdown.Toggle variant="success">
                 <FaShoppingCart color="white" fontSize="15px" />
@@ -62,7 +60,7 @@ const Header = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu style={{ minWidth: 370 }}>
-                <span style={{ padding: 10 }}>Cart is Empty!</span>
+                <p>Your Cart is Empty!</p>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>

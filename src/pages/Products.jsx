@@ -18,7 +18,7 @@ const Products = () => {
         <Search />
         <Sort />
       </div>
-      <Row className="g-3 my-2">
+      <Row className="g-3 my-2 card-bg">
         {isLoading ? (
           <Loader />
         ) : data.length === 0 ? (
@@ -28,7 +28,7 @@ const Products = () => {
             const { id, title, image, price } = product;
             return (
               <Col lg={3} md={6} sm={12} key={id}>
-                <Card>
+                <Card className="cardBg">
                   <Card.Img
                     variant="top"
                     style={{
