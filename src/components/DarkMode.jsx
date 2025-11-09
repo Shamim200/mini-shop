@@ -18,6 +18,7 @@ const DarkMode = () => {
   return (
     <div
       onClick={handelTheme}
+      className="mx-2"
       style={{ fontSize: "24px", cursor: "pointer", color: "#ddd" }}
     >
       {theme ? <IoMdSunny /> : <FaRegMoon />}
