@@ -27,7 +27,7 @@ const Products = () => {
         {isLoading ? (
           <Loader />
         ) : products.length === 0 ? (
-          "no products found!"
+          <p className="text-center text-capitalize">no products found😔!</p>
         ) : (
           products.map((product) => {
             const { id, title, thumbnail, price } = product;
