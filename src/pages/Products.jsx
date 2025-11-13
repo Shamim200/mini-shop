@@ -7,30 +7,71 @@ import Search from "../components/Search";
 import Sort from "../components/Sort";
 
 const Products = () => {
-  const [q, setQ] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("title");
+  const [order, setOrder] = useState("asc");
 
-  const { data, isLoading, isError, error } = useGetProductsQuery(q);
+  const { data, isLoading, isError, error } = useGetProductsQuery(searchTerm);
 
   if (isError) {
     console.log("data fetching error: ", error.message);
   }
 
-  let products = data?.products;
+  let products = data?.products || [];
+
+  // sort by title
+  if (sortBy === "title") {
+    products = [...products].sort((a, b) => {
+      if (order === "asc") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    });
+  }
+  // sort by price
+
+  if (sortBy === "price") {
+    products = [...products].sort((a, b) => {
+      if (order === "asc") {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+  }
+
+  // sort by rating
+
+  if (sortBy === "rating") {
+    products = [...products].sort((a, b) => {
+      if (order === "asc") {
+        return a.rating - b.rating;
+      } else {
+        return b.rating - a.rating;
+      }
+    });
+  }
 
   return (
     <Container>
       <div className="d-flex justify-content-md-between align-items-md-center py-4 flex-md-row flex-column ">
-        <Search q={q} setQ={setQ} />
-        <Sort />
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <Sort
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          order={order}
+          setOrder={setOrder}
+        />
       </div>
-      <Row className="g-3 my-2 card-bg">
+      <Row className="g-3 my-2 card-bg py-2">
         {isLoading ? (
           <Loader />
-        ) : products.length === 0 ? (
+        ) : products?.length === 0 ? (
           <p className="text-center text-capitalize">no products found😔!</p>
         ) : (
-          products.map((product) => {
-            const { id, title, thumbnail, price } = product;
+          products?.map((product) => {
+            const { id, title, thumbnail, price, rating } = product;
             return (
               <Col lg={3} md={6} sm={12} key={id}>
                 <Card className="cardBg">
@@ -50,8 +91,9 @@ const Products = () => {
                       <h5>{title.slice(0, 20)}</h5>
                     </Card.Title>
 
+                    <p className="py-1">rating: {rating}</p>
                     <div className="d-flex justify-content-between align-items-center">
-                      <p style={{ margin: "1rem 0" }}>${price}</p>
+                      <p className="py-2">${price}</p>
                       <Button variant="outline-success">Add To Cart</Button>
                       {/* {cart.some((item) => {
                         item.id === product.id ? (
