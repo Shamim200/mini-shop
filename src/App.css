@@ -42,6 +42,10 @@ body {
   background: var(--cardBg) !important;
   color: var(--card-color) !important;
 }
+.card:hover {
+  /* transition: all linear 0.8s; */
+  border: 2px solid rgb(0, 65, 90);
+}
 /* search components */
 .form-control {
   background: var(--search-bg) !important;
