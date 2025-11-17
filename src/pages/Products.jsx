@@ -1,17 +1,27 @@
 import { useState } from "react";
 import { Card, Col, Container, Row, Button, Form } from "react-bootstrap";
-import Loader from "../components/Loader";
+// import Loader from "../components/Loader";
 import { useGetProductsQuery } from "../services/api";
+import Skeleton from "../components/Skeleton";
 
 import Search from "../components/Search";
 import Sort from "../components/Sort";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../features/cart/cart";
+import Paginations from "../components/Paginations";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("title");
   const [order, setOrder] = useState("asc");
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
 
-  const { data, isLoading, isError, error } = useGetProductsQuery(searchTerm);
+  const { data, isLoading, isError, error } = useGetProductsQuery({
+    searchTerm,
+    page,
+    limit,
+  });
 
   if (isError) {
     console.log("data fetching error: ", error.message);
@@ -53,9 +63,16 @@ const Products = () => {
     });
   }
 
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const handelAddCart = () => {
+    dispatch(addCart());
+  };
+  console.log(cart.items);
+
   return (
     <Container>
-      <div className="d-flex justify-content-md-between align-items-md-center py-4 flex-md-row flex-column ">
+      <div className="d-flex justify-content-md-between align-items-md-center py-4 flex-md-row flex-column flex-wrap">
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Sort
           sortBy={sortBy}
@@ -66,7 +83,8 @@ const Products = () => {
       </div>
       <Row className="g-3 my-2 card-bg py-2">
         {isLoading ? (
-          <Loader />
+          // <Loader />
+          <Skeleton />
         ) : products?.length === 0 ? (
           <p className="text-center text-capitalize">no products found😔!</p>
         ) : (
@@ -94,7 +112,9 @@ const Products = () => {
                     <p className="py-1">rating: {rating}</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <p className="py-2">${price}</p>
-                      <Button variant="outline-success">Add To Cart</Button>
+                      <Button onClick={handelAddCart} variant="outline-success">
+                        Add To Cart
+                      </Button>
                       {/* {cart.some((item) => {
                         item.id === product.id ? (
                           <Button
@@ -120,6 +140,8 @@ const Products = () => {
           })
         )}
       </Row>
+
+      <Paginations page={page} setPage={setPage} limit={limit} />
     </Container>
   );
 };
