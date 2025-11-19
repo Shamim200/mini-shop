@@ -6,7 +6,7 @@ const Sort = ({ sortBy, setSortBy, order, setOrder }) => {
   return (
     <>
       <Form
-        className="d-flex gap-3 align-items-center my-3"
+        className="d-flex flex-wrap gap-3 align-items-center my-3"
         onSubmit={(e) => e.preventDefault()}
       >
         <Form.Select
