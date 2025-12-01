@@ -45,6 +45,7 @@ body {
 .card:hover {
   /* transition: all linear 0.8s; */
   border: 2px solid rgb(0, 65, 90);
+  cursor: pointer;
 }
 /* search components */
 .form-control {
