@@ -1,11 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 body {
-  font-family: "lato" !important;
+  font-family: "Ubuntu" !important;
 }
 
-.nav-link {
-  font-family: ubuntu !important;
-}
 .active {
   color: red !important;
 }
@@ -46,6 +42,12 @@ body {
   /* transition: all linear 0.8s; */
   border: 2px solid rgb(0, 65, 90);
   cursor: pointer;
+}
+
+.card-skeleton {
+  width: 150px;
+  height: 200px;
+  padding: 1rem;
 }
 /* search components */
 .form-control {
