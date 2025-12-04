@@ -12,7 +12,8 @@ export const productApi = createApi({
         if (searchTerm) {
           return `/products/search?q=${searchTerm}&limit=${limit}&skip=${skip}`;
         }
-        return `/products?&limit=${limit}&skip=${skip}`;
+        // return `/products?&limit=${limit}&skip=${skip}`;
+        return `/products`;
       },
     }),
   }),
