@@ -7,13 +7,20 @@ export const productApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({ searchTerm, page = 1, limit = 10 }) => {
+      query: ({
+        searchTerm,
+        page = 1,
+        limit = 10,
+        sortBy = "title",
+        order = "asc",
+      }) => {
         const skip = (page - 1) * limit;
         if (searchTerm) {
-          return `/products/search?q=${searchTerm}&limit=${limit}&skip=${skip}`;
+          return `/products/search?q=${searchTerm}&limit=${limit}&skip=${skip}&sortBy=${sortBy}&order=${order}`;
+        } else {
+          return `/products?limit=${limit}&skip=${skip}&sortBy=${sortBy}&order=${order}`;
+          // return `/products`;
         }
-        // return `/products?&limit=${limit}&skip=${skip}`;
-        return `/products`;
       },
     }),
   }),
