@@ -36,6 +36,7 @@ const Products = () => {
       }
     });
   }
+
   // sort by price
 
   if (sortBy === "price") {
@@ -51,7 +52,7 @@ const Products = () => {
   // sort by rating
 
   if (sortBy === "rating") {
-    products = [...products].sort((a, b) => {
+    [...products].sort((a, b) => {
       if (order === "asc") {
         return a.rating - b.rating;
       } else {
