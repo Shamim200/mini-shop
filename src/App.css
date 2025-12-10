@@ -48,6 +48,15 @@ body {
   height: 200px;
   padding: 1rem;
 }
+/* category page */
+.category-item {
+  color: #fff;
+}
+.category-item:hover {
+  cursor: pointer;
+  color: rgb(15, 126, 0);
+  transition: all 0.3s ease;
+}
 /* search components */
 .form-control {
   background: var(--search-bg) !important;
