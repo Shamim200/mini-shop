@@ -6,6 +6,7 @@ import Search from "../components/Search";
 import Sort from "../components/Sort";
 import Paginations from "../components/Paginations";
 import Skeleton from "../components/Skeleton";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -88,31 +89,33 @@ const Products = () => {
             const { id, title, thumbnail, price, rating } = product;
             return (
               <Col lg={3} md={6} sm={12} key={id}>
-                <Card className="cardBg">
-                  <Card.Img
-                    variant="top"
-                    className="img-thumbnail"
-                    style={{
-                      width: "200px",
-                      height: "200px",
-                      objectFit: "cover",
-                      padding: "1rem",
-                      margin: "auto",
-                    }}
-                    src={thumbnail}
-                  />
-                  <Card.Body className="p-4">
-                    <Card.Title>
-                      <h5>{title.slice(0, 20) || <Skeleton />}</h5>
-                    </Card.Title>
+                <Link to={`/products/${id}`} className="text-decoration-none">
+                  <Card className="cardBg">
+                    <Card.Img
+                      variant="top"
+                      className="img-thumbnail"
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        objectFit: "cover",
+                        padding: "1rem",
+                        margin: "auto",
+                      }}
+                      src={thumbnail}
+                    />
+                    <Card.Body className="p-4">
+                      <Card.Title>
+                        <h5>{title.slice(0, 20) || <Skeleton />}</h5>
+                      </Card.Title>
 
-                    <p className="py-1">rating: {rating}</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <p className="py-2">${price}</p>
-                      <Button variant="outline-success">Add To Cart</Button>
-                    </div>
-                  </Card.Body>
-                </Card>
+                      <p className="py-1">rating: {rating}</p>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <p className="py-2">${price}</p>
+                        <Button variant="outline-success">Add To Cart</Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Link>
               </Col>
             );
           })
