@@ -19,7 +19,6 @@ export const productApi = createApi({
           return `/products/search?q=${searchTerm}&limit=${limit}&skip=${skip}&sortBy=${sortBy}&order=${order}`;
         } else {
           return `/products?limit=${limit}&skip=${skip}&sortBy=${sortBy}&order=${order}`;
-          // return `/products`;
         }
       },
     }),
