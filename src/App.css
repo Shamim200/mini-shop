@@ -43,6 +43,16 @@ body {
   cursor: pointer;
 }
 
+/* home page grid */
+.my-grid {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  background: #ddd;
+  padding: 1rem;
+  color: #000;
+  border-radius: 5px;
+}
 .card-skeleton {
   width: 150px;
   height: 200px;
