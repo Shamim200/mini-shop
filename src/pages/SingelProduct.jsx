@@ -13,10 +13,14 @@ const SingelProduct = () => {
   if (!product) return <div>No product found!</div>;
 
   return (
-    <Container className="my-5">
-      <div className="d-flex justify-content-start align-items-start">
-        <img className="w-50" src={product.thumbnail} alt={product.title} />
-        <div>
+    <Container>
+      <div className="d-flex m-3 flex-column flex-md-row justify-content-md-start align-items-md-start gap-4">
+        <img
+          className="img-fluid"
+          src={product.thumbnail}
+          alt={product.title}
+        />
+        <div className="flex-wrap">
           <h3>{product.title}</h3>
           <p>{product.description}</p>
           <p>category: {product.category}</p>
