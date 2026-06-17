@@ -8,7 +8,7 @@ const Signin = () => {
         <Col xs={12} md={9}>
           <Card>
             <Card.Body>
-              <h4 className="text-capitalize text-center">sign up form</h4>
+              <h4 className="text-capitalize text-center">sign in form</h4>
               <Form method="POST" className="my-5">
                 <Form.Group className="my-4">
                   <Form.Control
