@@ -7,6 +7,8 @@ import Sort from "../components/Sort";
 import Paginations from "../components/Paginations";
 import Skeleton from "../components/Skeleton";
 import { Link } from "react-router-dom";
+import { addToCart, removeCart } from "../features/cart/cart";
+import { useDispatch, useSelector } from "react-redux";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,6 +16,20 @@ const Products = () => {
   const [order, setOrder] = useState("asc");
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.items);
+  console.log(cart);
+
+  // handel add to cart
+  const handelAddToCart = ({ id, title, price }) => {
+    dispatch(addToCart({ id, title, price }));
+  };
+
+  // handel remove from cart
+  const handelRemoveFromCart = (id) => {
+    dispatch(removeCart(id));
+  };
 
   const { data, isLoading, isError, error } = useGetProductsQuery({
     searchTerm,
@@ -29,7 +45,7 @@ const Products = () => {
 
   // sort by title
   if (sortBy === "title") {
-    products = [...products].sort((a, b) => {
+    products = products.toSorted((a, b) => {
       if (order === "asc") {
         return a.title.localeCompare(b.title);
       } else {
@@ -41,7 +57,14 @@ const Products = () => {
   // sort by price
 
   if (sortBy === "price") {
-    products = [...products].sort((a, b) => {
+    // products = [...products].sort((a, b) => {
+    //   if (order === "asc") {
+    //     return a.price - b.price;
+    //   } else {
+    //     return b.price - a.price;
+    //   }
+    // });
+    products = products.toSorted((a, b) => {
       if (order === "asc") {
         return a.price - b.price;
       } else {
@@ -53,7 +76,14 @@ const Products = () => {
   // sort by rating
 
   if (sortBy === "rating") {
-    [...products].sort((a, b) => {
+    // [...products].sort((a, b) => {
+    //   if (order === "asc") {
+    //     return a.rating - b.rating;
+    //   } else {
+    //     return b.rating - a.rating;
+    //   }
+    // });
+    products = products.toSorted((a, b) => {
       if (order === "asc") {
         return a.rating - b.rating;
       } else {
@@ -89,8 +119,8 @@ const Products = () => {
             const { id, title, thumbnail, price, rating } = product;
             return (
               <Col lg={3} md={6} sm={12} key={id}>
-                <Link to={`/products/${id}`} className="text-decoration-none">
-                  <Card className="cardBg">
+                <Card className="cardBg">
+                  <Link to={`/products/${id}`}>
                     <Card.Img
                       variant="top"
                       className="img-thumbnail"
@@ -103,19 +133,39 @@ const Products = () => {
                       }}
                       src={thumbnail}
                     />
-                    <Card.Body className="p-4">
-                      <Card.Title>
-                        <h5>{title.slice(0, 20) || <Skeleton />}</h5>
-                      </Card.Title>
+                  </Link>
+                  <Card.Body className="p-4">
+                    <Card.Title>
+                      <h5>{title.slice(0, 20) || <Skeleton />}</h5>
+                    </Card.Title>
 
-                      <p className="py-1">rating: {rating}</p>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <p className="py-2">${price}</p>
-                        <Button variant="outline-success">Add To Cart</Button>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Link>
+                    <p className="py-1">rating: {rating}</p>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p className="py-2">${price}</p>
+                      {/* <Button
+                        variant="outline-success"
+                        onClick={() => handelAddToCart({ id, title, price })}
+                      >
+                        Add To Cart
+                      </Button> */}
+                      {cart.some((item) =>
+                        item.id === id ? (
+                          <Button onClick={() => handelRemoveFromCart(id)}>
+                            remove cart
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() =>
+                              handelAddToCart({ thumbnail, id, title, price })
+                            }
+                          >
+                            Add To Cart
+                          </Button>
+                        ),
+                      )}
+                    </div>
+                  </Card.Body>
+                </Card>
               </Col>
             );
           })
