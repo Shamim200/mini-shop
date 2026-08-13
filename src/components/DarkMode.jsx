@@ -3,11 +3,12 @@ import { IoMdSunny } from "react-icons/io";
 import { FaRegMoon } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../features/theme/theme";
+// import { Button } from "react-bootstrap";
 
 const DarkMode = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.isDarkMode);
-  const handelTheme = () => {
+  const handleTheme = () => {
     dispatch(toggleTheme());
   };
 
@@ -16,13 +17,14 @@ const DarkMode = () => {
   }, [theme]);
 
   return (
-    <div
-      onClick={handelTheme}
-      className="mx-2"
-      style={{ fontSize: "24px", cursor: "pointer", color: "#ddd" }}
+    <button
+      type="button"
+      onClick={() => handleTheme()}
+      className="btn btn-dark mx-2 cursor-pointer"
+      style={{ fontSize: "20px", color: "#ddd" }}
     >
       {theme ? <IoMdSunny /> : <FaRegMoon />}
-    </div>
+    </button>
   );
 };
 export default DarkMode;
