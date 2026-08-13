@@ -18,7 +18,10 @@ import SingelProduct from "./pages/SingelProduct.jsx";
 const router = createBrowserRouter([
   {
     element: <Layout />,
+    // errorElement: <div>something went wrong!</div>,
+    ErrorBoundary: <div>something went wrong!</div>,
     // loader: true,
+
     children: [
       {
         path: "/",
