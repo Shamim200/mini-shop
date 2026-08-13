@@ -33,6 +33,7 @@ body {
   --navbar-bg: #fff !important;
   --navbar-color: #000;
 }
+
 /* products cards */
 .card {
   background: var(--cardBg) !important;
