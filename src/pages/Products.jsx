@@ -7,8 +7,11 @@ import Sort from "../components/Sort";
 import Paginations from "../components/Paginations";
 import Skeleton from "../components/Skeleton";
 import { Link } from "react-router-dom";
-import { addToCart, removeCart } from "../features/cart/cart";
-import { useDispatch, useSelector } from "react-redux";
+// import { addToCart, removeCart } from "../features/cart/cart";
+// import { addToCart, removeCart } from "../features/cart/cart";
+
+// import { useDispatch, useSelector } from "react-redux";
+import useCart from "../Hooks/useCart";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,20 +19,6 @@ const Products = () => {
   const [order, setOrder] = useState("asc");
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
-
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.items);
-  console.log(cart);
-
-  // handel add to cart
-  const handelAddToCart = ({ id, title, price }) => {
-    dispatch(addToCart({ id, title, price }));
-  };
-
-  // handel remove from cart
-  const handelRemoveFromCart = (id) => {
-    dispatch(removeCart(id));
-  };
 
   const { data, isLoading, isError, error } = useGetProductsQuery({
     searchTerm,
@@ -57,13 +46,6 @@ const Products = () => {
   // sort by price
 
   if (sortBy === "price") {
-    // products = [...products].sort((a, b) => {
-    //   if (order === "asc") {
-    //     return a.price - b.price;
-    //   } else {
-    //     return b.price - a.price;
-    //   }
-    // });
     products = products.toSorted((a, b) => {
       if (order === "asc") {
         return a.price - b.price;
@@ -76,13 +58,6 @@ const Products = () => {
   // sort by rating
 
   if (sortBy === "rating") {
-    // [...products].sort((a, b) => {
-    //   if (order === "asc") {
-    //     return a.rating - b.rating;
-    //   } else {
-    //     return b.rating - a.rating;
-    //   }
-    // });
     products = products.toSorted((a, b) => {
       if (order === "asc") {
         return a.rating - b.rating;
@@ -91,6 +66,9 @@ const Products = () => {
       }
     });
   }
+
+  //
+  const { isInCart, handelAddToCart, handelRemoveFromCart } = useCart();
 
   return (
     <Container>
@@ -142,26 +120,25 @@ const Products = () => {
                     <p className="py-1">rating: {rating}</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <p className="py-2">${price}</p>
-                      {/* <Button
-                        variant="outline-success"
-                        onClick={() => handelAddToCart({ id, title, price })}
-                      >
-                        Add To Cart
-                      </Button> */}
-                      {cart.some((item) =>
-                        item.id === id ? (
-                          <Button onClick={() => handelRemoveFromCart(id)}>
-                            remove cart
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() =>
-                              handelAddToCart({ thumbnail, id, title, price })
-                            }
-                          >
-                            Add To Cart
-                          </Button>
-                        ),
+
+                      {isInCart(id) ? (
+                        <Button
+                          className="text-capitalize"
+                          variant="outline-danger"
+                          onClick={() => handelRemoveFromCart({ id })}
+                        >
+                          remove
+                        </Button>
+                      ) : (
+                        <Button
+                          className="text-capitalize"
+                          variant="outline-success"
+                          onClick={() =>
+                            handelAddToCart({ id, title, price, thumbnail })
+                          }
+                        >
+                          add
+                        </Button>
                       )}
                     </div>
                   </Card.Body>
