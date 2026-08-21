@@ -11,7 +11,7 @@ import Products from "./pages/Products.jsx";
 import Categories from "./pages/Categories.jsx";
 import Signup from "./pages/Signup.jsx";
 import Signin from "./pages/Signin.jsx";
-import Cart from "./pages/Cart.jsx";
+import Carts from "./pages/Carts.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import SingelProduct from "./pages/SingelProduct.jsx";
 
@@ -53,8 +53,8 @@ const router = createBrowserRouter([
         element: <Signin />,
       },
       {
-        path: "/cart",
-        element: <Cart />,
+        path: "/carts",
+        element: <Carts />,
       },
       {
         path: "*",
