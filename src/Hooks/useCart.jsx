@@ -43,6 +43,7 @@ const useCart = () => {
   };
 
   return {
+    cart,
     isInCart,
     handelAddToCart,
     handelRemoveFromCart,
