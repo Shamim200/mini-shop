@@ -59,7 +59,7 @@ const Header = () => {
             </Nav>
             <Nav className="ms-auto text-capitalize">
               <Nav.Link as={NavLink} to="/signup">
-                Signup
+                Sign up
               </Nav.Link>
               <DarkMode />
               <Dropdown align="end">
@@ -108,7 +108,7 @@ const Header = () => {
                           Cart page
                         </Link>
                       </Button>
-                      <p>Total: {totalAmount}</p>
+                      <p>Total: {Math.trunc(totalAmount)}</p>
                     </div>
                   )}
                 </Dropdown.Menu>
