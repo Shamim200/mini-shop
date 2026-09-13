@@ -3,7 +3,7 @@ body {
 }
 
 .active {
-  color: red !important;
+  color: rgb(32, 146, 4) !important;
 }
 
 .dark-mode {
