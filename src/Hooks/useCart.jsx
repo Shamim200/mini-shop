@@ -35,11 +35,11 @@ const useCart = () => {
     dispatch(clearCart());
   };
 
-  const handelIncrementQuantity = () => {
-    dispatch(incrementQuantity());
+  const handelIncrementQuantity = (id) => {
+    dispatch(incrementQuantity(id));
   };
-  const handelDecrementQuantity = () => {
-    dispatch(decrementQuantity());
+  const handelDecrementQuantity = (id) => {
+    dispatch(decrementQuantity(id));
   };
 
   return {
