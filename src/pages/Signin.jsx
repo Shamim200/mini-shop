@@ -1,7 +1,18 @@
-import { Col, Container, Row, Card, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import {
+  Col,
+  Container,
+  Row,
+  Card,
+  Form,
+  Button,
+  InputGroup,
+} from "react-bootstrap";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Signin = () => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <Container className="my-5">
       <Row className="justify-content-md-center">
@@ -20,13 +31,18 @@ const Signin = () => {
                   />
                 </Form.Group>
                 <Form.Group className="my-4">
-                  <Form.Control
-                    name="password"
-                    id="password"
-                    type="password"
-                    placeholder="Enter Your Password"
-                    required
-                  />
+                  <InputGroup>
+                    <Form.Control
+                      name="password"
+                      id="password"
+                      type={showPassword ? "password" : "text"}
+                      placeholder="Enter Your Password"
+                      required
+                    />
+                    <Button onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </Button>
+                  </InputGroup>
                 </Form.Group>
 
                 <Link
