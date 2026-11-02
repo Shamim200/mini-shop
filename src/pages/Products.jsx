@@ -7,10 +7,6 @@ import Sort from "../components/Sort";
 import Paginations from "../components/Paginations";
 import Skeleton from "../components/Skeleton";
 import { Link } from "react-router-dom";
-// import { addToCart, removeCart } from "../features/cart/cart";
-// import { addToCart, removeCart } from "../features/cart/cart";
-
-// import { useDispatch, useSelector } from "react-redux";
 import useCart from "../Hooks/useCart";
 
 const Products = () => {
@@ -67,7 +63,6 @@ const Products = () => {
     });
   }
 
-  //
   const { isInCart, handelAddToCart, handelRemoveFromCart } = useCart();
 
   return (
