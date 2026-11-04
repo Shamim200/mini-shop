@@ -28,6 +28,7 @@ const Signin = () => {
                     placeholder="Enter Your Email"
                     type="email"
                     required
+                    autoComplete="off"
                   />
                 </Form.Group>
                 <Form.Group className="my-4">

@@ -28,6 +28,7 @@ const Signup = () => {
                     type="text"
                     placeholder="Enter Your Full Name"
                     required
+                    autoComplete="off"
                   />
                 </Form.Group>
 
@@ -38,6 +39,7 @@ const Signup = () => {
                     type="text"
                     placeholder="Enter Your User Name"
                     required
+                    autoComplete="off"
                   />
                 </Form.Group>
 
@@ -48,6 +50,7 @@ const Signup = () => {
                     placeholder="Enter Your Email"
                     type="email"
                     required
+                    autoComplete="off"
                   />
                 </Form.Group>
                 <Form.Group className="my-4">
