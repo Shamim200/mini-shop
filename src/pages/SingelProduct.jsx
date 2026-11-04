@@ -13,7 +13,12 @@ const SingelProduct = () => {
     return <Loader />;
   }
 
-  if (!product) return <div>No product found!</div>;
+  if (!product)
+    return (
+      <div className="text-center py-4 text-capitalize">
+        no product found😔!
+      </div>
+    );
 
   const {
     thumbnail,
