@@ -9,7 +9,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import DarkMode from "../components/DarkMode";
-import logo from "../assets/images/vite.svg";
+import logo from "../../public/vite.svg";
 import useCart from "../Hooks/useCart";
 
 const navList = [
